@@ -1,12 +1,16 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from "@angular/core"
+import { CommonModule } from "@angular/common"
+import {ChatComponent} from './chat/chat.component';
 
 @Component({
-  selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  selector: "app-root",
+  standalone: true,
+  imports: [CommonModule, ChatComponent],
+  template: `
+    <div class="chat-app">
+      <app-chat></app-chat>
+    </div>
+  `,
 })
-export class AppComponent {
-  title = 'GigaChatUI';
-}
+export class AppComponent {}
+
