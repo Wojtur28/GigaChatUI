@@ -12,10 +12,10 @@ export class ChatService {
   private wsUrl = "ws://localhost:8080/ws/chat";
   private wsConnection?: WebSocketSubject<Message>;
   private messageSubject = new Subject<Message>();
-  private readonly roomId = "general"; // Stały pokój
+  private readonly roomId = "all";
 
   constructor(private http: HttpClient) {
-    this.connectWebSocket(); // Połączenie WebSocket tylko raz przy inicjalizacji
+    this.connectWebSocket();
   }
 
   private connectWebSocket(): void {

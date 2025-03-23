@@ -1,0 +1,26 @@
+.message-item {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.message-bubble {
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 75%;
+  word-wrap: break-word;
+}
+
+.message-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.message-sender {
+  font-weight: bold;
+}
+
+.message-time {
+  color: gray;
+}
