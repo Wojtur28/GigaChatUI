@@ -1,1 +1,28 @@
-<p>room-sidebar works!</p>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Modern Chat</h1>
+      <app-theme-toggle></app-theme-toggle>
+    </div>
+  </div>
+
+  <div class="sidebar-content">
+    <h3 class="font-medium mb-3">Your Nickname</h3>
+    <input
+      type="text"
+      class="nickname-input"
+      [value]="currentUser"
+      (input)="updateUsername($event)"
+      placeholder="Enter nickname..."
+    />
+
+    <h3 class="font-medium mt-4 mb-3">Room ID</h3>
+    <input
+      type="text"
+      class="room-input"
+      [value]="selectedRoomId"
+      (input)="updateRoom($event)"
+      placeholder="Enter room ID..."
+    />
+  </div>
+</div>

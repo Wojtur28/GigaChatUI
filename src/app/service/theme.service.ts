@@ -12,14 +12,12 @@ export class ThemeService {
   }
 
   private initTheme(): void {
-    // Check if user has a preference stored
     const storedPreference = localStorage.getItem(this.darkModeKey)
 
     if (storedPreference !== null) {
       this.darkMode.set(storedPreference === "true")
     }
 
-    // Apply the theme
     this.applyTheme()
   }
 

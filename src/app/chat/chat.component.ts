@@ -1,4 +1,4 @@
-import { Component, type OnInit, OnDestroy } from "@angular/core";
+import { Component, type OnInit, OnDestroy, ChangeDetectorRef } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { MessageListComponent } from "../message-list/message-list.component";
@@ -12,43 +12,16 @@ import { Subscription } from "rxjs";
   selector: "app-chat",
   standalone: true,
   imports: [CommonModule, FormsModule, MessageListComponent, MessageInputComponent, RoomSidebarComponent],
-  template: `
-    <div class="chat-container">
-      <app-room-sidebar
-        [rooms]="rooms"
-        [selectedRoomId]="selectedRoomId">
-      </app-room-sidebar>
-
-      <div class="main-content">
-        <div class="chat-header">
-          <h2 class="text-xl font-semibold">
-            {{ selectedRoomName }}
-          </h2>
-        </div>
-
-        <app-message-list
-          [messages]="messages"
-          [currentUser]="currentUser">
-        </app-message-list>
-
-        <app-message-input
-          (messageSent)="sendMessage($event)">
-        </app-message-input>
-      </div>
-    </div>
-  `,
+  templateUrl: "./chat.component.html",
+  styleUrls: ["./chat.component.css"]
 })
 export class ChatComponent implements OnInit, OnDestroy {
   messages: Message[] = [];
-  rooms: { id: string; name: string }[] = [
-    { id: "general", name: "General" }
-  ];
-  selectedRoomId = "general";
-  selectedRoomName = "General";
+  selectedRoomId = "All";
   currentUser: string = "User_" + Math.floor(Math.random() * 1000);
   private messageSubscription?: Subscription;
 
-  constructor(private chatService: ChatService) {}
+  constructor(private chatService: ChatService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.loadMessages();
@@ -73,6 +46,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   subscribeToMessages(): void {
     this.messageSubscription = this.chatService.getNewMessages().subscribe((message) => {
       this.messages = [...this.messages, message];
+      this.cdr.detectChanges();
     });
   }
 
@@ -87,15 +61,22 @@ export class ChatComponent implements OnInit, OnDestroy {
       timestamp: new Date().toISOString(),
     };
 
-    this.messages = [...this.messages, newMessage];
-
     this.chatService.sendMessage(newMessage).subscribe({
-      next: (sentMessage) => {
-        console.log("Message sent successfully:", sentMessage);
+      next: () => {
+        console.log("Message sent successfully");
       },
       error: (error) => {
         console.error("Error sending message:", error);
       },
     });
+  }
+
+  updateUsername(newUsername: string): void {
+    this.currentUser = newUsername.trim() || "Anonymous";
+  }
+
+  updateRoom(newRoomId: string): void {
+    this.selectedRoomId = newRoomId.trim();
+    this.loadMessages();
   }
 }

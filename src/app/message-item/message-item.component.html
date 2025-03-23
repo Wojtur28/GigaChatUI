@@ -1,1 +1,9 @@
-<p>message-item works!</p>
+<div class="message-item">
+  <div class="message-bubble" [ngClass]="isOwnMessage ? 'own' : 'other'">
+    <div class="message-meta">
+      <span class="message-sender">{{ message.sender }}</span>
+      <span class="message-time">{{ formatTime(message.timestamp) }}</span>
+    </div>
+    <p>{{ message.content }}</p>
+  </div>
+</div>

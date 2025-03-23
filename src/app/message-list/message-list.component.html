@@ -1,1 +1,17 @@
-<p>message-list works!</p>
+<div class="messages-container" #scrollContainer>
+  <div class="message-list">
+    <ng-container *ngIf="messages.length > 0; else emptyState">
+      <app-message-item
+        *ngFor="let message of messages"
+        [message]="message"
+        [isOwnMessage]="message.sender === currentUser">
+      </app-message-item>
+    </ng-container>
+
+    <ng-template #emptyState>
+      <div class="empty-state">
+        <p>No messages yet. Start the conversation!</p>
+      </div>
+    </ng-template>
+  </div>
+</div>
