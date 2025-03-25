@@ -1,16 +1,14 @@
-import { Component } from "@angular/core"
-import { CommonModule } from "@angular/common"
-import {ChatComponent} from './chat/chat.component';
+import {Component} from "@angular/core"
+import {CommonModule} from "@angular/common"
+import {RouterOutlet} from '@angular/router';
 
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [CommonModule, ChatComponent],
-  template: `
-    <div class="chat-app">
-      <app-chat></app-chat>
-    </div>
-  `,
+  imports: [CommonModule, RouterOutlet],
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"]
 })
-export class AppComponent {}
+export class AppComponent {
+}
 
