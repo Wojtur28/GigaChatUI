@@ -1,1 +1,57 @@
-<p>landing-page works!</p>
+<div class="landing-page-container">
+    <div class="navbar">
+        <div class="menu-buttons">
+            <button class="menu-button" mat-button [matMenuTriggerFor]="chatMenu">Chat</button>
+            <mat-menu #chatMenu="matMenu" class="custom-menu">
+                <button mat-menu-item>Chat Option 1</button>
+                <button mat-menu-item>Chat Option 2</button>
+                <button mat-menu-item>Chat Option 3</button>
+            </mat-menu>
+
+            <button class="menu-button" mat-button [matMenuTriggerFor]="accountMenu">Account</button>
+            <mat-menu #accountMenu="matMenu" class="custom-menu">
+                <button mat-menu-item>Account Option 1</button>
+                <button mat-menu-item>Account Option 2</button>
+                <button mat-menu-item>Account Option 3</button>
+            </mat-menu>
+        </div>
+    </div>
+
+    <div class="cards-container">
+        <mat-card class="chat-card" (click)="navigateTo('/group-chat')">
+            <mat-card-header>
+                <mat-card-title>Group Chat</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="card-icon">
+                    <mat-icon>groups</mat-icon>
+                </div>
+                <p>
+                    Join or create group conversations with multiple users.
+                    Share ideas, collaborate, and communicate with your team or friends.
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button>JOIN NOW</button>
+            </mat-card-actions>
+        </mat-card>
+
+        <mat-card class="chat-card" (click)="navigateTo('/direct-chat')">
+            <mat-card-header>
+                <mat-card-title>Direct Chat</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="card-icon">
+                    <mat-icon>person</mat-icon>
+                </div>
+                <p>
+                    Start a private conversation with another user.
+                    Secure, one-on-one messaging for personal communication.
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button>START CHAT</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
