@@ -1,164 +1,125 @@
 :host {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .landing-page-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    color: white;
-
-}
-
-.navbar {
-    background-color: var(--electric-indigo);
-    width: 98%;
-    height: 6vh;
-    border-radius: 10px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
-    margin: 1vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-}
-
-.menu-buttons {
-    display: flex;
-    gap: 20px;
-}
-
-.menu-button {
-    color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  color: white;
 }
 
 .cards-container {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 80px;
-    flex-wrap: wrap;
-    width: 90%;
-    max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 80px;
+  flex-wrap: wrap;
+  width: 90%;
+  max-width: 1200px;
 }
 
 .chat-card {
-    width: 400px;
-    height: 350px;
-    border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    background-color: white;
-    overflow: hidden;
-    position: relative;
+  width: 400px;
+  height: 350px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  background-color: white;
+  overflow: hidden;
+  position: relative;
 }
 
 .chat-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-10px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
 }
 
 .chat-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background-color: var(--electric-indigo);
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: var(--electric-indigo);
 }
 
 mat-card-header {
-    background-color: rgba(var(--electric-indigo-rgb), 0.05);
-    padding: 20px;
+  background-color: rgba(var(--electric-indigo-rgb), 0.05);
+  padding: 20px;
 }
 
 mat-card-title {
-    font-size: 24px;
-    font-weight: 600;
-    color: var(--electric-indigo);
-    margin-bottom: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--electric-indigo);
+  margin-bottom: 0;
 }
 
 mat-card-content {
-    flex: 1;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #333;
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #333;
 }
 
 .card-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background-color: var(--electric-indigo);
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: var(--electric-indigo);
+  margin-bottom: 20px;
 }
 
 .card-icon mat-icon {
-    font-size: 40px;
-    height: 40px;
-    width: 40px;
-    color: white;
+  font-size: 40px;
+  height: 40px;
+  width: 40px;
+  color: white;
 }
 
 mat-card-content p {
-    text-align: center;
-    line-height: 1.6;
-    font-size: 16px;
+  text-align: center;
+  line-height: 1.6;
+  font-size: 16px;
 }
 
 mat-card-actions {
-    display: flex;
-    justify-content: center;
-    padding: 16px;
-    border-top: 1px solid #eee;
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+  border-top: 1px solid #eee;
 }
 
 mat-card-actions button {
-    background-color: var(--electric-indigo);
-    color: white;
-    font-weight: 500;
-    padding: 8px 24px;
-    border-radius: 24px;
-    letter-spacing: 1px;
-}
-
-::ng-deep .custom-menu {
-    background-color: var(--electric-indigo);
-}
-
-::ng-deep .mat-mdc-menu-content {
-    background-color: var(--electric-indigo);
-}
-
-::ng-deep .mat-mdc-menu-item {
-    color: white;
-}
-
-::ng-deep .mat-mdc-menu-item:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--electric-indigo);
+  color: white;
+  font-weight: 500;
+  padding: 8px 24px;
+  border-radius: 24px;
+  letter-spacing: 1px;
 }
 
 @media (max-width: 900px) {
-    .cards-container {
-        flex-direction: column;
-        align-items: center;
-    }
+  .cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .chat-card {
-        width: 90%;
-        max-width: 400px;
-        margin-bottom: 30px;
-    }
+  .chat-card {
+    width: 90%;
+    max-width: 400px;
+    margin-bottom: 30px;
+  }
 }

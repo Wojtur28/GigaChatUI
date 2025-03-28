@@ -1,0 +1,41 @@
+<div class="direct-chat-container">
+  <mat-card class="chat-card">
+    <mat-card-header>
+      <mat-card-title>
+        <div class="chat-header">
+          <span>Chat with {{ recipient }}</span>
+        </div>
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="chat-messages">
+        <div *ngIf="messages.length === 0" class="no-messages">
+          <p>No messages yet. Start the conversation!</p>
+        </div>
+
+        <div *ngFor="let message of messages"
+             [ngClass]="{'message-container': true, 'sent': isCurrentUserMessage(message), 'received': !isCurrentUserMessage(message)}">
+          <div class="message-bubble">
+            <div class="message-content">{{ message.content }}</div>
+            <div class="message-timestamp">{{ formatTimestamp(message.timestamp) }}</div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <form [formGroup]="messageForm" (ngSubmit)="sendMessage()" class="message-form">
+        <mat-form-field appearance="outline" class="message-input">
+          <input matInput
+                 formControlName="content"
+                 placeholder="Type a message..."
+                 autocomplete="off">
+        </mat-form-field>
+        <button mat-fab color="primary" type="submit" [disabled]="!messageForm.valid">
+          <mat-icon>send</mat-icon>
+        </button>
+      </form>
+    </mat-card-actions>
+  </mat-card>
+</div>

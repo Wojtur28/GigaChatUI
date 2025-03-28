@@ -18,6 +18,7 @@ import {Router} from "@angular/router";
 export class LoginPageComponent implements OnInit {
   loginForm!: FormGroup;
   submitted = false;
+  loginError = '';
 
   constructor(
     private fb: FormBuilder,
@@ -26,27 +27,51 @@ export class LoginPageComponent implements OnInit {
   ) {
   }
 
+
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(4)]]
     });
+
+    if (this.authService.isAuthenticated()) {
+      console.log('Already authenticated, navigating to landing page');
+      this.router.navigate(['/']);
+    }
   }
 
   login(): void {
     this.submitted = true;
+    this.loginError = '';
 
     if (this.loginForm.invalid) return;
 
+    console.log('Attempting login...');
     this.authService.login(this.loginForm.value).subscribe({
       next: (response) => {
-        localStorage.setItem('auth_token', response.token);
+        console.log('Login API response:', response);
+        this.authService.storeToken(response.token);
 
-        this.router.navigate(['/']);
+        const storedToken = localStorage.getItem('auth_token');
+        console.log('Token stored in localStorage:', !!storedToken);
+        const isAuth = this.authService.isAuthenticated();
+        console.log('Is authenticated after login:', isAuth);
+
+        console.log('Navigating to landing page...');
+        this.router.navigate(['/'], {skipLocationChange: false}).then(success => {
+          console.log('Navigation result:', success);
+          if (!success) {
+            console.log('Trying alternative navigation...');
+            window.location.href = '/';
+          }
+        });
       },
       error: (error) => {
         console.error('Login failed:', error);
+        this.loginError = 'Login failed. Please check your credentials.';
       }
     });
   }
+
+
 }

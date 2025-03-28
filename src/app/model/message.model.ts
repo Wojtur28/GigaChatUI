@@ -1,8 +1,7 @@
 export interface Message {
   id: string
-  roomId: string
-  sender: string
+  authorId: string
+  conversationId: string
   content: string
   timestamp: string
 }
-
