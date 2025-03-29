@@ -1,3 +1,8 @@
+:host {
+  min-height: 100vh;
+  display: flex;
+}
+
 .auth-container {
   min-height: 50vh;
   width: 420px;

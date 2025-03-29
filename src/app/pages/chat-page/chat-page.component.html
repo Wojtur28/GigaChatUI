@@ -1,0 +1,22 @@
+<div class="chat-container">
+  <div class="conversation-list">
+    <ul>
+      <li *ngFor="let conv of conversations" (click)="selectConversation(conv)"
+          [class.selected]="conv.id === selectedConversation.id">
+        {{ conv.name }}
+      </li>
+    </ul>
+  </div>
+  <div class="chat-window">
+    <div class="messages">
+      <div *ngFor="let msg of messages">
+        <span>{{ msg.authorId }}: </span><span>{{ msg.content }}</span>
+      </div>
+    </div>
+    <div class="input-area">
+      <input [(ngModel)]="newMessage" placeholder="Type a message"/>
+      <button (click)="sendMessage()">Send</button>
+      <button (click)="reconnect()">Reconnect</button>
+    </div>
+  </div>
+</div>
