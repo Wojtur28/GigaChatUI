@@ -2,9 +2,9 @@ import {LoginRequest} from '../model/login-request';
 import {Observable} from 'rxjs';
 import {LoginResponse} from '../model/login-response';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../../environments/environment';
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
+import {environment} from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -69,6 +69,18 @@ export class AuthService {
     } catch (e) {
       console.error('Error parsing token:', e);
       return true;
+    }
+  }
+
+  getUsernameFromToken(): string | null {
+    const token = this.getToken();
+    if (!token) return null;
+    try {
+      const payload = JSON.parse(window.atob(token.split('.')[1]));
+      return payload.username || payload.sub || null;
+    } catch (error) {
+      console.error('Error decoding JWT:', error);
+      return null;
     }
   }
 

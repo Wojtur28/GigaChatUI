@@ -1,16 +1,18 @@
 <div class="navbar">
-  <div class="menu-buttons">
-    <button class="menu-button" mat-button [matMenuTriggerFor]="chatMenu">Chat</button>
-    <mat-menu #chatMenu="matMenu" class="custom-menu">
-      <button mat-menu-item (click)="navigateTo('/group-chat')">Group Chat</button>
-      <button mat-menu-item (click)="navigateTo('/direct-chat')">Direct Chat</button>
-    </mat-menu>
+    <div class="menu-buttons">
+        <button class="menu-button" mat-button (click)="navigateTo('/')">Home</button>
 
-    <button class="menu-button" mat-button [matMenuTriggerFor]="accountMenu">Account</button>
-    <mat-menu #accountMenu="matMenu" class="custom-menu">
-      <button mat-menu-item>Account Option 1</button>
-      <button mat-menu-item>Account Option 2</button>
-      <button mat-menu-item (click)="logout()">Logout</button>
-    </mat-menu>
-  </div>
+        <button class="menu-button" mat-button [matMenuTriggerFor]="chatMenu">Chat</button>
+        <mat-menu #chatMenu="matMenu" class="custom-menu">
+            <button mat-menu-item (click)="navigateTo('/group-chat')">Group Chat</button>
+            <button mat-menu-item (click)="navigateTo('/direct-chat')">Direct Chat</button>
+        </mat-menu>
+
+        <button class="menu-button" mat-button [matMenuTriggerFor]="accountMenu">Account</button>
+        <mat-menu #accountMenu="matMenu" class="custom-menu">
+            <button mat-menu-item>Profile</button>
+            <button mat-menu-item>Settings</button>
+            <button mat-menu-item (click)="logout()">Logout</button>
+        </mat-menu>
+    </div>
 </div>

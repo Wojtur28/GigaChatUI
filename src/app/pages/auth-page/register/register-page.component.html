@@ -1,7 +1,13 @@
 <div class="register-content">
+  <div class="success-message" *ngIf="registrationSuccessMessage">
+    {{ registrationSuccessMessage }}
+  </div>
+  <div class="error-message" *ngIf="registerError">
+    {{ registerError }}
+  </div>
+
   <h1 class="register-title">Register</h1>
   <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate>
-
     <div class="register-form">
       <input class="register-input" type="text" placeholder="Username" formControlName="username"/>
       <div class="error-message"
@@ -46,7 +52,6 @@
     </div>
 
     <button class="button-submit" type="submit" [disabled]="registerForm.invalid">Register</button>
-
-    <p class="login-text">Already have an account? <a href="#">Login</a></p>
+    <p class="login-text">Already have an account? <a href="/auth/login">Login</a></p>
   </form>
 </div>

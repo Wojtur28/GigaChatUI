@@ -1,18 +1,25 @@
 import {Injectable} from "@angular/core";
 import {Observable, Subject} from "rxjs";
 import {Message} from "../model/message";
+import {environment} from "../../environments/environment.prod";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
     providedIn: "root",
 })
 export class ChatService {
-    private wsUrl = "ws://localhost:8080/ws/chat";
+    private wsUrl = environment.websocketUrl;
     private socket?: WebSocket;
     private messageSubject = new Subject<Message>();
 
+    constructor(private http: HttpClient) {
+    }
+
     connectWebSocket(conversationId: string): void {
         this.closeWebSocket();
-        this.socket = new WebSocket(`${this.wsUrl}?conversationId=${conversationId}`);
+        const token = localStorage.getItem("auth_token");
+        const url = `${this.wsUrl}?conversationId=${conversationId}${token ? `&token=${token}` : ""}`;
+        this.socket = new WebSocket(url);
         this.socket.onopen = () => {
             console.log("WebSocket connected:", conversationId);
         };
@@ -45,5 +52,9 @@ export class ChatService {
 
     getNewMessages(): Observable<Message> {
         return this.messageSubject.asObservable();
+    }
+
+    deleteAllMessages(): Observable<void> {
+        return this.http.delete<void>(`${environment.apiUrl}/chat/messages`);
     }
 }

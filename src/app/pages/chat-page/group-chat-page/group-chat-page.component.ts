@@ -1,19 +1,20 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
-import {ChatService} from '../../service/chat-service';
+import {ChatService} from '../../../service/chat-service';
 import {FormsModule} from '@angular/forms';
 import {NgForOf} from '@angular/common';
+import {AuthService} from '../../../service/auth-service';
 
 @Component({
   selector: 'app-chat-page',
-  templateUrl: './chat-page.component.html',
+  templateUrl: './group-chat-page.component.html',
   imports: [
     FormsModule,
     NgForOf
   ],
-  styleUrls: ['./chat-page.component.css']
+  styleUrls: ['./group-chat-page.component.css']
 })
-export class ChatPageComponent implements OnInit, OnDestroy {
+export class GroupChatPageComponent implements OnInit, OnDestroy {
   conversations = [
     {id: 'test', name: 'Test Conversation'},
     {id: '2', name: 'Conversation 2'}
@@ -24,8 +25,10 @@ export class ChatPageComponent implements OnInit, OnDestroy {
   private messageSubscription?: Subscription;
   conversationId = this.selectedConversation.id;
 
-  constructor(private chatService: ChatService) {
+  constructor(private chatService: ChatService, private authService: AuthService) {
+
   }
+
 
   ngOnInit(): void {
     this.connect();
@@ -56,24 +59,38 @@ export class ChatPageComponent implements OnInit, OnDestroy {
     this.connect();
   }
 
-  reconnect(): void {
-    this.chatService.closeWebSocket();
-    setTimeout(() => {
-      this.connect();
-    }, 500);
+  autoResize(event: any): void {
+    const textarea = event.target;
+    textarea.style.height = 'auto';
+    const lineHeight = parseInt(window.getComputedStyle(textarea).lineHeight, 10);
+    const maxHeight = lineHeight * 3;
+    if (textarea.scrollHeight < maxHeight) {
+      textarea.style.height = textarea.scrollHeight + 'px';
+    } else {
+      textarea.style.height = maxHeight + 'px';
+    }
   }
 
   sendMessage(): void {
-    if (this.newMessage.trim()) {
-      const message = {
-        id: '',
-        conversationId: this.conversationId,
-        authorId: 'me',
-        content: this.newMessage,
-        timestamp: new Date()
-      };
-      this.chatService.sendMessageOverWebSocket(message);
-      this.newMessage = '';
+    if (!this.newMessage.trim()) {
+      return;
     }
+    if (this.newMessage.length > 255) {
+      alert('Message cannot exceed 255 characters');
+      return;
+    }
+
+    const authorUsername = this.authService.getUsernameFromToken();
+
+    const message = {
+      id: '',
+      conversationId: this.conversationId,
+      authorId: authorUsername || 'Unknown',
+      content: this.newMessage,
+      timestamp: new Date()
+    };
+
+    this.chatService.sendMessageOverWebSocket(message);
+    this.newMessage = '';
   }
 }
