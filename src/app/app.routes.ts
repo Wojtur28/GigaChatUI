@@ -6,7 +6,7 @@ import {LandingPageComponent} from './pages/landing-page/landing-page.component'
 import {authGuard} from './guards/auth-guard';
 import {nonAuthGuard} from './guards/non-auth.guard';
 import {MainLayoutComponent} from './layouts/main-layout/main-layout.component';
-import {ChatPageComponent} from './pages/chat-page/chat-page.component';
+import {GroupChatPageComponent} from './pages/chat-page/group-chat-page/group-chat-page.component';
 
 export const routes: Routes = [
   {
@@ -15,7 +15,8 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       {path: '', component: LandingPageComponent},
-      {path: 'chat', component: ChatPageComponent},
+      {path: 'group-chat', component: GroupChatPageComponent},
+      // {path: 'admin', component: AdminPageComponent}
     ]
   },
   {

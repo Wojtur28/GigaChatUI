@@ -10,7 +10,6 @@
   display: flex;
   min-height: 30rem;
   width: 100%;
-
 }
 
 .conversation-list {
@@ -53,12 +52,33 @@
   padding: 10px;
 }
 
-.input-area input {
+.input-area textarea {
   flex: 1;
+  width: 100%;
   margin-right: 10px;
   padding: 5px;
+  resize: none;
 }
 
 .input-area button {
-  padding: 5px 10px;
+  background-color: var(--aqua-pulse);
+  border: 2px solid #ffffff;
+  border-radius: 0.5rem;
+  color: #ffffff;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
+
+.input-area button:hover {
+  background-color: var(--electric-indigo);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.input-area button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+

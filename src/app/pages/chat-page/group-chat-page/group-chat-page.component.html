@@ -14,9 +14,15 @@
       </div>
     </div>
     <div class="input-area">
-      <input [(ngModel)]="newMessage" placeholder="Type a message"/>
+        <textarea [(ngModel)]="newMessage"
+                  (input)="autoResize($event)"
+                  (keydown.enter)="sendMessage(); $event.preventDefault()"
+                  placeholder="Type a message"
+                  rows="1"
+                  maxlength="255"
+                  style="overflow:hidden;">
+        </textarea>
       <button (click)="sendMessage()">Send</button>
-      <button (click)="reconnect()">Reconnect</button>
     </div>
   </div>
 </div>
