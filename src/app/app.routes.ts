@@ -7,6 +7,7 @@ import {authGuard} from './guards/auth-guard';
 import {nonAuthGuard} from './guards/non-auth.guard';
 import {MainLayoutComponent} from './layouts/main-layout/main-layout.component';
 import {GroupChatPageComponent} from './pages/chat-page/group-chat-page/group-chat-page.component';
+import {AdminPageComponent} from './pages/admin-page/admin-page.component';
 
 export const routes: Routes = [
   {
@@ -16,7 +17,11 @@ export const routes: Routes = [
     children: [
       {path: '', component: LandingPageComponent},
       {path: 'group-chat', component: GroupChatPageComponent},
-      // {path: 'admin', component: AdminPageComponent}
+      {
+        path: 'admin',
+        component: AdminPageComponent,
+        data: {roles: ['ROLE_ADMIN']}
+      }
     ]
   },
   {
@@ -28,5 +33,5 @@ export const routes: Routes = [
       {path: 'register', component: RegisterPageComponent},
       {path: '', redirectTo: 'login', pathMatch: 'full'},
     ]
-  },
+  }
 ];

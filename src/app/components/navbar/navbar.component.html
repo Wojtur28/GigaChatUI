@@ -14,5 +14,10 @@
             <button mat-menu-item>Settings</button>
             <button mat-menu-item (click)="logout()">Logout</button>
         </mat-menu>
+
+        <button *ngIf="isAdmin()" class="menu-button" mat-button (click)="navigateToAdmin()">
+            Admin Panel
+        </button>
+
     </div>
 </div>

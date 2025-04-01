@@ -84,6 +84,26 @@ export class AuthService {
     }
   }
 
+  getUserRoles(): string[] {
+    const token = this.getToken();
+    if (!token) return [];
+    try {
+      const payload = JSON.parse(window.atob(token.split('.')[1]));
+      return payload.roles || [];
+    } catch (error) {
+      console.error('Error decoding JWT:', error);
+      return [];
+    }
+  }
+
+  isAdmin(): boolean {
+    const roles = this.getUserRoles();
+    debugger
+    console.log('Decoded Roles:', roles);
+    return roles.includes('ROLE_ADMIN');
+  }
+
+
   logout(): void {
     console.log('Logging out user');
     localStorage.removeItem('auth_token');
