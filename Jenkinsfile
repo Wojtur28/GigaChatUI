@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs 'node16'
-    }
-
     environment {
         SSH_CRED_ID = '1c5d625b-c431-471e-8a91-fde82d4b4b0b'
         REMOTE_USER = 'root'
