@@ -1,0 +1,275 @@
+.admin-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.admin-header h1 {
+  margin: 0;
+  color: #333;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+}
+
+.users-section {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.users-section h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.users-table-container {
+  overflow-x: auto;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.users-table th,
+.users-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.users-table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  color: #333;
+}
+
+.users-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.action-cell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.action-btn {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.3s;
+}
+
+.details-btn {
+  background-color: #2196f3;
+  color: white;
+}
+
+.details-btn:hover {
+  background-color: #1976d2;
+}
+
+.block-btn {
+  background-color: #ff9800;
+  color: white;
+}
+
+.block-btn:hover {
+  background-color: #f57c00;
+}
+
+.unblock-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.unblock-btn:hover {
+  background-color: #388e3c;
+}
+
+.shadowban-btn {
+  background-color: #9c27b0;
+  color: white;
+}
+
+.shadowban-btn:hover {
+  background-color: #7b1fa2;
+}
+
+.unshadowban-btn {
+  background-color: #00bcd4;
+  color: white;
+}
+
+.unshadowban-btn:hover {
+  background-color: #0097a7;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f;
+}
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.status-badge.active {
+  background-color: #e8f5e9;
+  color: #388e3c;
+}
+
+.status-badge.blocked {
+  background-color: #ffebee;
+  color: #d32f2f;
+}
+
+.status-badge.shadowbanned {
+  background-color: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 8px;
+  width: 500px;
+  max-width: 90%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #757575;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.user-detail-row {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.detail-label {
+  width: 120px;
+  font-weight: bold;
+  color: #757575;
+}
+
+.detail-value {
+  flex: 1;
+}
+
+.modal-footer {
+  padding: 15px 20px;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.primary-btn {
+  background-color: #2196f3;
+  color: white;
+}
+
+.primary-btn:hover {
+  background-color: #1976d2;
+}
+
+@media (max-width: 768px) {
+  .action-cell {
+    flex-direction: column;
+  }
+
+  .action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+}
+

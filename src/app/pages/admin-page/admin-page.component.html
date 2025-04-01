@@ -1,0 +1,105 @@
+<div class="admin-container">
+    <div class="admin-header">
+        <h1>Admin Panel</h1>
+        <div class="action-buttons">
+            <button class="delete-button" (click)="deleteAll()">Delete All Messages</button>
+        </div>
+    </div>
+
+    <div class="users-section">
+        <h2>User Management</h2>
+        <div class="users-table-container">
+            <table class="users-table">
+                <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Last Active</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let user of users">
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        <span *ngIf="user.isBlocked" class="status-badge blocked">Blocked</span>
+                        <span *ngIf="user.isShadowBanned" class="status-badge shadowbanned">Shadowbanned</span>
+                        <span *ngIf="!user.isBlocked && !user.isShadowBanned" class="status-badge active">Active</span>
+                    </td>
+                    <td>{{ user.lastActive | date:'medium' }}</td>
+                    <td class="action-cell">
+                        <button class="action-btn details-btn" (click)="showDetails(user)" title="View Details">
+                            <i class="fa fa-info-circle"></i> Details
+                        </button>
+
+                        <button *ngIf="!user.isBlocked" class="action-btn block-btn" (click)="blockUser(user.id)"
+                                title="Block User">
+                            <i class="fa fa-ban"></i> Block
+                        </button>
+                        <button *ngIf="user.isBlocked" class="action-btn unblock-btn" (click)="unblockUser(user.id)"
+                                title="Unblock User">
+                            <i class="fa fa-check"></i> Unblock
+                        </button>
+
+                        <button *ngIf="!user.isShadowBanned" class="action-btn shadowban-btn"
+                                (click)="shadowbanUser(user.id)" title="Shadowban User">
+                            <i class="fa fa-user-secret"></i> Shadowban
+                        </button>
+                        <button *ngIf="user.isShadowBanned" class="action-btn unshadowban-btn"
+                                (click)="removeShadowban(user.id)" title="Remove Shadowban">
+                            <i class="fa fa-user"></i> Remove Shadowban
+                        </button>
+
+                        <button class="action-btn delete-btn" (click)="deleteUser(user.id)" title="Delete User">
+                            <i class="fa fa-trash"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- User Details Modal -->
+    <div class="modal" *ngIf="showDetailsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>User Details</h2>
+                <button class="close-btn" (click)="closeDetails()">&times;</button>
+            </div>
+            <div class="modal-body" *ngIf="selectedUser">
+                <div class="user-detail-row">
+                    <span class="detail-label">ID:</span>
+                    <span class="detail-value">{{ selectedUser.id }}</span>
+                </div>
+                <div class="user-detail-row">
+                    <span class="detail-label">Username:</span>
+                    <span class="detail-value">{{ selectedUser.username }}</span>
+                </div>
+                <div class="user-detail-row">
+                    <span class="detail-label">Email:</span>
+                    <span class="detail-value">{{ selectedUser.email }}</span>
+                </div>
+                <div class="user-detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="detail-value">
+            <span *ngIf="selectedUser.isBlocked" class="status-badge blocked">Blocked</span>
+            <span *ngIf="selectedUser.isShadowBanned" class="status-badge shadowbanned">Shadowbanned</span>
+            <span *ngIf="!selectedUser.isBlocked && !selectedUser.isShadowBanned"
+                  class="status-badge active">Active</span>
+          </span>
+                </div>
+                <div class="user-detail-row">
+                    <span class="detail-label">Last Active:</span>
+                    <span class="detail-value">{{ selectedUser.lastActive | date:'medium' }}</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn primary-btn" (click)="closeDetails()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+

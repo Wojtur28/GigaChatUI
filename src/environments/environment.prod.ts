@@ -2,8 +2,8 @@ export const environment = {
   production: true,
   //http://localhost:8080
   //'/api'
-  apiUrl: 'http://localhost:8080',
-  websocketUrl: 'ws://localhost:8080/ws/chat'
+  apiUrl: '/api',
+  websocketUrl: 'wss://wojtur.eu/ws'
   //ws://localhost:8080/ws
   //wss://wojtur.eu/ws
 };
