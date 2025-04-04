@@ -7,41 +7,40 @@ import {MatIconModule} from "@angular/material/icon";
 import {NgIf} from "@angular/common";
 
 @Component({
-    selector: 'app-navbar',
-    templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.css'],
-    standalone: true,
-    imports: [
-        MatButtonModule,
-        MatMenuModule,
-        MatIconModule,
-        NgIf
-    ]
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css'],
+  standalone: true,
+  imports: [
+    MatButtonModule,
+    MatMenuModule,
+    MatIconModule,
+    NgIf
+  ]
 })
 export class NavbarComponent {
-    constructor(
-        private router: Router,
-        protected authService: AuthService
-    ) {
-    }
+  constructor(
+    private router: Router,
+    protected authService: AuthService
+  ) {
+  }
 
 
-    isAdmin(): boolean {
-        debugger
-        return this.authService.isAdmin();
-    }
+  isAdmin(): boolean {
+    return this.authService.isAdmin();
+  }
 
 
-    navigateTo(path: string): void {
-        this.router.navigate([path]);
-    }
+  navigateTo(path: string): void {
+    this.router.navigate([path]);
+  }
 
-    navigateToAdmin(): void {
-        this.router.navigate(['/admin']);
-    }
+  navigateToAdmin(): void {
+    this.router.navigate(['/admin']);
+  }
 
-    logout(): void {
-        this.authService.logout();
-        this.router.navigate(['auth/login']);
-    }
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['auth/login']);
+  }
 }

@@ -98,7 +98,6 @@ export class AuthService {
 
   isAdmin(): boolean {
     const roles = this.getUserRoles();
-    debugger
     console.log('Decoded Roles:', roles);
     return roles.includes('ROLE_ADMIN');
   }
